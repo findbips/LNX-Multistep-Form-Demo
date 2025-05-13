@@ -4,7 +4,10 @@ import { Progress } from "./ui/progress";
 import { Card, CardContent } from "./ui/card";
 import OrderFormSteps from "./OrderFormSteps";
 import { motion } from "framer-motion";
+<<<<<<< HEAD
 import { useToast } from "./ui/use-toast";
+=======
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
 
 interface OrderFormProps {
   onComplete?: (formData: OrderFormData) => void;
@@ -20,7 +23,11 @@ export interface OrderFormData {
 }
 
 const OrderForm = ({ onComplete = () => {} }: OrderFormProps) => {
+<<<<<<< HEAD
   const [currentStep, setCurrentStep] = useState(1);
+=======
+  const [currentStep, setCurrentStep] = useState(0);
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
   const [formData, setFormData] = useState<OrderFormData>({
     productLink: "",
     name: "",
@@ -29,6 +36,7 @@ const OrderForm = ({ onComplete = () => {} }: OrderFormProps) => {
     notes: "",
     termsAccepted: false,
   });
+<<<<<<< HEAD
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
@@ -40,15 +48,31 @@ const OrderForm = ({ onComplete = () => {} }: OrderFormProps) => {
       setCurrentStep(currentStep + 1);
     } else {
       handleSubmit();
+=======
+
+  const steps = ["Order Details", "Terms & Policies", "Order Summary"];
+  const progressPercentage = ((currentStep + 1) / steps.length) * 100;
+
+  const handleNext = () => {
+    if (currentStep < steps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      onComplete(formData);
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
     }
   };
 
   const handleBack = () => {
+<<<<<<< HEAD
     if (currentStep > 1) {
+=======
+    if (currentStep > 0) {
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
       setCurrentStep(currentStep - 1);
     }
   };
 
+<<<<<<< HEAD
   const sendConfirmationEmails = async (data: OrderFormData) => {
     // In a real application, this would call your backend API to send emails
     console.log("Sending confirmation email to customer:", data.email);
@@ -85,6 +109,17 @@ const OrderForm = ({ onComplete = () => {} }: OrderFormProps) => {
     } finally {
       setIsSubmitting(false);
     }
+=======
+  const updateFormData = (data: Partial<OrderFormData>) => {
+    setFormData({ ...formData, ...data });
+  };
+
+  const handleSubmit = () => {
+    // Here you would typically send the data to your backend
+    console.log("Order submitted:", formData);
+    onComplete(formData);
+    // You could redirect to a confirmation page or show a success message
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
   };
 
   return (
@@ -106,7 +141,11 @@ const OrderForm = ({ onComplete = () => {} }: OrderFormProps) => {
             {steps.map((step, index) => (
               <div
                 key={index}
+<<<<<<< HEAD
                 className={`text-sm ${index + 1 <= currentStep ? "text-primary font-medium" : "text-muted-foreground"}`}
+=======
+                className={`text-sm ${index <= currentStep ? "text-primary font-medium" : "text-muted-foreground"}`}
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
               >
                 {step}
               </div>
@@ -126,6 +165,7 @@ const OrderForm = ({ onComplete = () => {} }: OrderFormProps) => {
           >
             <OrderFormSteps
               currentStep={currentStep}
+<<<<<<< HEAD
               onNextStep={handleNext}
               onPrevStep={handleBack}
               formData={formData}
@@ -133,6 +173,28 @@ const OrderForm = ({ onComplete = () => {} }: OrderFormProps) => {
               onSubmit={handleSubmit}
             />
           </motion.div>
+=======
+              formData={formData}
+              updateFormData={updateFormData}
+            />
+          </motion.div>
+
+          <div className="flex justify-between mt-8">
+            <Button
+              variant="outline"
+              onClick={handleBack}
+              disabled={currentStep === 0}
+            >
+              Back
+            </Button>
+
+            {currentStep === steps.length - 1 ? (
+              <Button onClick={handleSubmit}>Confirm Order</Button>
+            ) : (
+              <Button onClick={handleNext}>Next</Button>
+            )}
+          </div>
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
         </CardContent>
       </Card>
     </div>

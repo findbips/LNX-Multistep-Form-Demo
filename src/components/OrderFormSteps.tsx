@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React from "react";
+=======
+import React, { useState } from "react";
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,7 +20,11 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Alert, AlertDescription } from "./ui/alert";
+<<<<<<< HEAD
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
+=======
+import { AlertCircle, CheckCircle2 } from "lucide-react";
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
 
 interface OrderFormStepsProps {
   currentStep: number;
@@ -58,7 +66,11 @@ const OrderFormSteps: React.FC<OrderFormStepsProps> = ({
   const {
     register,
     handleSubmit,
+<<<<<<< HEAD
     formState: { errors, isSubmitting },
+=======
+    formState: { errors },
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
     watch,
     setValue,
   } = useForm<OrderFormData>({
@@ -367,8 +379,12 @@ const OrderFormSteps: React.FC<OrderFormStepsProps> = ({
                 <CheckCircle2 className="h-4 w-4 mr-2" />
                 <AlertDescription>
                   By clicking "Confirm Order", you agree to proceed with this
+<<<<<<< HEAD
                   international order request. A confirmation email will be sent
                   to your email address.
+=======
+                  international order request.
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
                 </AlertDescription>
               </Alert>
             </form>
@@ -377,6 +393,7 @@ const OrderFormSteps: React.FC<OrderFormStepsProps> = ({
             <Button variant="outline" onClick={onPrevStep}>
               Back
             </Button>
+<<<<<<< HEAD
             <Button type="submit" form="step3-form" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
@@ -386,6 +403,10 @@ const OrderFormSteps: React.FC<OrderFormStepsProps> = ({
               ) : (
                 "Confirm Order"
               )}
+=======
+            <Button type="submit" form="step3-form">
+              Confirm Order
+>>>>>>> b2d17e38a7e6043e1e45f601fff3a4b42abd3c4f
             </Button>
           </CardFooter>
         </Card>
